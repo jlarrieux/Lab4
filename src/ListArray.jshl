@@ -1,0 +1,79 @@
+//--------------------------------------------------------------------
+//
+//  Laboratory 4                                       ListArray.jshl
+//
+//  Class definition for the array implementation of the List ADT
+//
+//  The student is to complete all missing or incomplete method 
+//     implementations for this class
+//
+//--------------------------------------------------------------------
+
+class ListArray implements List
+{
+    // Data Members
+    private int size,           // Actual number of elements in the list
+                cursor;         // Cursor array index
+    private Object [] element;  // Array containing the list elements
+                                // As type Object, they are 'generic' 
+
+    // Constructors and helper method setup
+    public ListArray( )             // Constructor: default size
+    {
+ 
+    }
+
+    public ListArray(int maxNumber) // Constructor: specific size
+    {
+ 
+    }
+
+    // Class methods
+    private void setUp (int maxNumber)  // Called by constructors only
+    {
+
+    }
+
+    // ------ Insert method implementations for the interface List here ------ //
+
+    
+    public void showStructure ( )
+        // Outputs the elements in a list. If the list is empty, outputs
+        // "Empty list". This operation is intended for testing/debugging
+        // purposes only.
+
+    {
+        int j;   // Loop counter
+
+        if ( size == 0 )
+            System.out.println("Empty list");
+        else
+        {
+            System.out.println("size = " + size + "   cursor = " 
+                               + cursor);
+            for ( j = 0 ; j < element.length ; j++ )
+                System.out.print(j + "\t");
+            System.out.println( );
+            for ( j = 0 ; j < size ; j++ )
+                System.out.print(element[j] + "\t");
+            System.out.println( );
+        }
+    }
+
+    //--------------------------------------------------------------------
+    //
+    //                        In-lab operations
+    //
+    //--------------------------------------------------------------------
+
+    public void moveToNth ( int n )         // Move element to position n
+    {
+
+    }
+
+    public boolean find ( Object searchElement )    // Find searchElement
+    {
+
+    }
+    
+} // class ListArray
