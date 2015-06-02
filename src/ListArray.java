@@ -44,27 +44,25 @@ class ListArray implements List
 
     @Override
     public void insert(Object newElement) {
+        Object obj;
         if(!isFull()) {
 
-            if(isEmpty()){
-                element[0]=newElement;
-                size++;
-                cursor++;
-            }
-            else {
-                size++;
-                if(cursor==size-1){
 
-                    cursor++;
-                    element[cursor]=newElement;
-                }
-                else{
-                    for(int i=size; i>cursor; i++){
-                        element[i]= element[i-1];
-                    }
-                    cursor++;
-                }
-            }
+               if(size>0){
+
+                   for(int i=size; i>=cursor; i--){
+
+                       element[i+1]=element[i];
+                       System.out.printf("Current i: %d\t element at i: %s\t element at i+1: %s\n", i, String.valueOf(element[i]), String.valueOf(element[i+1]));
+                   }
+
+               }
+            cursor++;
+
+                element[cursor]=newElement;
+
+            size++;
+
 
         }
         else System.out.println("The list has reached its maximum size and element cannot be added!");
@@ -78,8 +76,9 @@ class ListArray implements List
             for(int i=cursor; i<size; i++){
                 element[i]=element[i+1];
             }
+            if(cursor==size-1) cursor=0;
             size--;
-            cursor--;
+
         }
         else System.out.println("The list contains no element and therefore nothing will be removed!");
 
@@ -88,7 +87,7 @@ class ListArray implements List
     @Override
     public void replace(Object newElement) {
         if(sizeCheck()){
-            element[size-1]= newElement;
+            element[cursor]= newElement;
         }
     }
 
@@ -182,21 +181,57 @@ class ListArray implements List
         }
     }
 
+
+
     //--------------------------------------------------------------------
     //
     //                        In-lab operations
     //
     //--------------------------------------------------------------------
 
-//    public void moveToNth ( int n )         // Move element to position n
-//    {
+    public void moveToNth ( int n )         // Move element to position n
+    {
+        System.out.printf("Move to n: %d\n", n);
+        int correction=0, oldCursorPosition =cursor;
+        if(size>n){
+            Object obj = getCursor();
+
+            remove();
+            System.out.printf("Current cursor after remove: %d\n", cursor);
+            if(n-1<0) cursor=0;
+            else      cursor = n-1;
+            System.out.printf("Current cursor before insert: %d\n", cursor);
+            insert(obj);
+
+
+        }
+
+    }
 //
-//    }
-//
-//    public boolean find ( Object searchElement )    // Find searchElement
-//    {
-//
-//    }
+    public boolean find ( Object searchElement )    // Find searchElement
+    {
+
+        if(!isEmpty()){
+            int i ;
+            for(i =cursor; i<size; i++){
+                System.out.printf("Current i: %d, with value\t\t with value: %s\n", i, String.valueOf(getCursor()));
+                if(String.valueOf(searchElement).equals(String.valueOf(getCursor()))){
+                    System.out.printf("Element found at %d\n", i);
+
+                    return true;
+                }
+                gotoNext();
+
+            }
+
+            if(i==size-1) return false;
+        }
+        else {
+            System.out.printf("Empty list, cannot search ");
+            return false;
+        }
+        return false;
+    }
 
 
 } // class ListArray

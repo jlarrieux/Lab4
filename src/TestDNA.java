@@ -11,14 +11,16 @@
 // outputs the number of times that each base (A, G, C and T) occurs
 // in the sequence.
 
-import java.io.*;
+import java.io.IOException;
 
 class TestDNA
 {
-    private static int aCount,  // Number of A's in the sequence
-                       cCount,  // Number of C's in the sequence
-                       tCount,  // Number of T's in the sequence
-                       gCount;  // Number of G's in the sequence
+    private static int aCount=0,  // Number of A's in the sequence
+                       cCount=0,  // Number of C's in the sequence
+                       tCount=0,  // Number of T's in the sequence
+                       gCount=0;  // Number of G's in the sequence
+
+
     
     public static void main ( String[] args ) throws IOException 
     {
@@ -67,11 +69,36 @@ class TestDNA
         // dnaSequence.
 
     {
+        if(!dnaSequence.isEmpty()){
+            dnaSequence.gotoBeginning();
+            Character c ;
 
+
+
+            do{
+                c= String.valueOf(dnaSequence.getCursor()).charAt(0);
+                System.out.printf("Next: %s\n", c);
+                updatecount(c);
+            }while(dnaSequence.gotoNext());
+
+
+        }
+        else System.out.print("No Genetic Code stored!");
 
 
 
         
     } // countBases
+
+
+    private static void updatecount(Character c) {
+        if(c=='a' || c== 'A') aCount++;
+        else if(c=='c' || c== 'C') cCount++;
+        else if(c=='t' || c== 'T') tCount++;
+        else if(c=='g' || c== 'G') gCount++;
+    }
+
+
+
     
 } // class TestDNA

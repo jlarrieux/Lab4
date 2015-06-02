@@ -157,20 +157,20 @@ class TestListArray
 						System.out.println("List is NOT full");
 					break;
 
-//M
-//M				case 'M' : case 'm' :                   // In-lab Exercise 2
-//M					System.out.println("Move the element marked by the cursor to "
-//M									   + "posititon " + n);
-//M					testList.moveToNth(n);
-//M					break;
 
-//?
-//?				case '?' :                              // In-lab Exercise 3
-//?					if ( testList.find(new Character(testElement)) )
-//?						System.out.println("Found");
-//?					else
-//?						System.out.println("NOT found");
-//?					break;
+				case 'M' : case 'm' :                   // In-lab Exercise 2
+					System.out.println("Move the element marked by the cursor to "
+									   + "posititon " + n);
+					testList.moveToNth(n);
+					break;
+
+
+				case '?' :                              // In-lab Exercise 3
+					if ( testList.find(new Character(testElement)) )
+						System.out.println("Found");
+					else
+						System.out.println("NOT found");
+					break;
 				case 'R': case 'r':
 					System.out.printf("Cursor value is: %d\n", testList.getCursorValue());
 					break;
